@@ -343,4 +343,731 @@
   }
   @keyframes spin{to{transform:rotate(360deg);}}
   .geo-status.done .spinner{display:none;}
-  .geo-status .
+  .geo-status .bar-track{
+    width:70px;height:4px;background:#E2E8E5;border-radius:3px;overflow:hidden;
+  }
+  .geo-status .bar-fill{
+    height:100%;background:var(--primary-green);width:0%;transition:width .3s;
+  }
+
+  /* LOGO MARKERS PIN */
+  .logo-marker-pin{
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    border: 2.5px solid var(--primary-green);
+    box-shadow: 0 4px 12px rgba(20,40,32,0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    cursor: pointer;
+    overflow: hidden;
+    padding: 4px;
+  }
+  .logo-marker-pin:hover, .logo-marker-pin.hl{
+    transform: scale(1.25);
+    box-shadow: 0 8px 20px rgba(20,40,32,0.28);
+    z-index: 9999 !important;
+  }
+  .logo-marker-pin svg{
+    width: 100%;
+    height: 100%;
+  }
+
+  /* POPUP STYLING & CARTES TRANSLUCIDES */
+  .leaflet-popup-content-wrapper{
+    border-radius:16px;
+    box-shadow:var(--shadow-md);
+    font-family:'Montserrat', sans-serif;
+    padding: 0;
+    overflow: hidden;
+    background: transparent;
+  }
+  .leaflet-popup-content{
+    margin: 0;
+    line-height: normal;
+  }
+
+  .popup-card{
+    font-family:'Montserrat',sans-serif;
+    min-width:260px;
+    max-width:300px;
+    padding: 14px 16px;
+    border-radius: 16px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  /* 3 Couleurs translucides de marque */
+  .popup-card.bg-vertufood{
+    background: rgba(240, 162, 2, 0.16);
+    border: 1.5px solid rgba(240, 162, 2, 0.42);
+  }
+  .popup-card.bg-fraicherie{
+    background: rgba(46, 125, 91, 0.16);
+    border: 1.5px solid rgba(46, 125, 91, 0.42);
+  }
+  .popup-card.bg-kumo{
+    background: rgba(216, 39, 39, 0.16);
+    border: 1.5px solid rgba(216, 39, 39, 0.42);
+  }
+
+  .leaflet-popup-tip-container{
+    display:none;
+  }
+
+  .popup-card .ph-name{
+    font-weight:800;
+    font-size:16px;
+    color:var(--text-primary);
+    margin-bottom:3px;
+  }
+  .popup-card .ph-sub{
+    font-size:11px;
+    color:var(--text-secondary);
+    margin-bottom:10px;
+    display:flex;
+    gap:6px;
+    flex-wrap:wrap;
+  }
+  .tag{
+    display:inline-block;
+    font-size:9.5px;
+    font-weight:700;
+    padding:3px 8px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.85);
+    border:1px solid rgba(0,0,0,0.08);
+    color:var(--text-primary);
+    text-transform:uppercase;
+    letter-spacing:0.03em;
+  }
+  .tag.brand{
+    background:rgba(255,255,255,0.92);
+    border-color:rgba(0,0,0,0.12);
+    color:var(--text-primary);
+    font-weight:800;
+  }
+  .popup-card .ph-row{
+    display:flex;
+    gap:8px;
+    font-size:11.5px;
+    padding:5px 0;
+    border-top:1px solid rgba(0,0,0,0.08);
+    font-weight: 500;
+  }
+  .popup-card .ph-row:first-of-type{border-top:1px solid rgba(0,0,0,0.08); margin-top:6px;}
+  .popup-card .ph-row .k{
+    color:var(--text-muted);
+    min-width:88px;
+    flex-shrink:0;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    font-weight: 700;
+    padding-top:1px;
+  }
+  .popup-card .ph-row .v{color:var(--text-primary); line-height:1.4;}
+  .popup-card .ph-row .v a{color:var(--primary-green); text-decoration:none; font-weight:700;}
+  .popup-card .ph-row .v a:hover{text-decoration:underline;}
+  .supply-pills{display:flex; gap:5px; flex-wrap:wrap;}
+  .pill{
+    font-size:9.5px;
+    padding:2px 6px;
+    border-radius:5px;
+    background:rgba(255,255,255,0.75);
+    border:1px solid rgba(0,0,0,0.08);
+    font-weight: 600;
+  }
+  .pill.on{background:#FFFFFF; border-color:rgba(46,125,91,0.4); color:var(--primary-green); font-weight:700;}
+  .pill.off{color:var(--text-muted);}
+
+  .leaflet-control-zoom a{
+    background:#FFFFFF!important;
+    color:var(--text-primary)!important;
+    border-color:var(--border-color)!important;
+    font-family:'Montserrat', sans-serif!important;
+    box-shadow:var(--shadow-sm);
+  }
+
+  /* Cluster */
+  .marker-cluster-custom{
+    background:#FFFFFF;
+    border:2.5px solid var(--primary-green);
+    border-radius:50%;
+    color:var(--primary-green);
+    font-family:'Montserrat', sans-serif;
+    font-weight:800;
+    display:flex;align-items:center;justify-content:center;
+    font-size:12px;
+    box-shadow: 0 4px 14px rgba(20,40,32,0.18);
+    transition: all 0.3s ease;
+  }
+  .marker-cluster-custom .cluster-inner-text{
+    transition: filter 0.3s ease, opacity 0.3s ease;
+  }
+  body.zoom-out-blurred .marker-cluster-custom .cluster-inner-text{
+    filter: blur(4.5px);
+    opacity: 0.5;
+    user-select: none;
+  }
+
+  @media (max-width: 860px){
+    .app{grid-template-columns:1fr;}
+    .sidebar{position:fixed; z-index:900; width:86vw; max-width:360px; transform:translateX(-100%); transition:transform .2s;}
+    .sidebar.open{transform:translateX(0);}
+    .map-toggle{
+      position:absolute; top:16px; left:16px; z-index:600;
+      background:#FFFFFF; color:var(--text-primary);
+      border:1px solid var(--border-color); border-radius:9px; padding:10px 12px;
+      display:flex; align-items:center; gap:6px; font-size:12px;
+      box-shadow:var(--shadow-md);
+      font-family:'Montserrat', sans-serif;
+      font-weight:700;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <p class="brand-eyebrow">Réseau de kiosques &mdash; Vue terrain</p>
+      <h1 class="brand-title">Cartographie des<br>kiosques</h1>
+      <div class="brand-stats">
+        <div class="stat-chip"><span class="n" id="statTotal">0</span><span class="l">Kiosques</span></div>
+        <div class="stat-chip"><span class="n" id="statVisible">0</span><span class="l">Sur cette vue</span></div>
+        <div class="stat-chip"><span class="n" id="statRegions">0</span><span class="l">Régions</span></div>
+      </div>
+    </div>
+
+    <div class="sidebar-scroll">
+      <div class="search-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="searchInput" placeholder="Rechercher un kiosque, une ville, un DR…" autocomplete="off">
+      </div>
+
+      <div class="filter-row">
+        <select class="mini-select" id="filterRegion"><option value="">Régions</option></select>
+        <select class="mini-select" id="filterEnseigne"><option value="">Enseignes</option></select>
+        <select class="mini-select" id="filterDr"><option value="">Tous les DR</option></select>
+      </div>
+
+      <div class="section-label"><span class="num">01</span> Livraison &amp; production</div>
+      <div class="layer-group" id="grpLivraison"></div>
+
+      <div class="section-label"><span class="num">02</span> Fournisseurs FLEG</div>
+      <div class="layer-group" id="grpFournisseurs"></div>
+
+      <div class="section-label"><span class="num">03</span> Directeurs régionaux (DR)</div>
+      <div class="layer-group" id="grpDrs"></div>
+
+      <div class="section-label"><span class="num">04</span> Concepts</div>
+      <div class="layer-group" id="grpConcepts"></div>
+
+      <div class="legend-box" id="legendBox" style="display:none;">
+        <div class="legend-title">Légende</div>
+        <div id="legendItems"></div>
+      </div>
+
+      <div class="section-label"><span class="num">05</span> Kiosques (<span id="kioskListCount">0</span>)</div>
+      <div class="kiosk-list" id="kioskList"></div>
+    </div>
+  </aside>
+
+  <div class="map-wrap">
+    <button class="map-toggle" id="mapToggle" style="display:none;">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      Filtres
+    </button>
+    <div class="top-bar">
+      <div class="layer-title-card">
+        <div class="eyebrow">Vue active</div>
+        <div class="ttl" id="activeLayerTitle">Tous les kiosques</div>
+      </div>
+      <div class="geo-status" id="geoStatus">
+        <div class="spinner"></div>
+        <span id="geoStatusText">Localisation des kiosques…</span>
+        <div class="bar-track"><div class="bar-fill" id="geoBarFill"></div></div>
+      </div>
+    </div>
+    <div id="map"></div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.min.js"></script>
+<script>
+const KIOSQUES = [{"kiosque": "AJACCIO", "societe": "VERTUFOOD", "concepts": "VERTU", "enseigne": "CARREFOUR", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Sud Est", "dr": "Sabine", "telDr": "06 58 57 50 45", "mailDr": "sabine.atlei@lafraicherie.com", "gestionnaire": "Xavier", "telPdv": "06 75 19 76 14", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Viale et Dumay", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "Chem. du Finosello", "cp": "20000", "siret": "82 151 577 200 340", "mailKiosque": "vf.ajaccio@vertufood.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "ANCENIS-SAINT-GEREON", "societe": "VERTUFOOD", "concepts": "VERTU", "enseigne": "LECLERC", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Nord Ouest", "dr": "David", "telDr": "06 68 57 87 43", "mailDr": "david@vertufood.com", "gestionnaire": "Laurie", "telPdv": "07 81 19 68 19", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Monloup Dev", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "Espace 23 -Boulevard de la prairie", "cp": "44150", "siret": "82 151 577 200 571", "mailKiosque": "vf.ancenis@vertufood.com", "creneaux": "4h30 - 8h30"}, {"kiosque": "ANGERS SAINT SERGE", "societe": "VERTUFOOD", "concepts": "VERTU + YUN", "enseigne": "CARREFOUR", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Nord Ouest", "dr": "David", "telDr": "06 68 57 87 43", "mailDr": "david@vertufood.com", "gestionnaire": "", "telPdv": "", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Monloup Dev", "fournisseurFrais": "", "adresse": "3 Boulevard Gaston Ramon, Zi St Serge", "cp": "49000", "siret": "82 151 577 200 696", "mailKiosque": "angers.saint-serge@kumofoods.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "ANGLET", "societe": "VERTUFOOD", "concepts": "VERTU", "enseigne": "CARREFOUR", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Sud Ouest", "dr": "Morgane", "telDr": "06 69 76 30 98", "mailDr": "morgane.bertin@lafraicherie.com", "gestionnaire": "Stephane", "telPdv": "06 24 37 01 05", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Fraichadour", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "Centre Commercial Bab2 - Avenue Jean Léon Laporte", "cp": "64600", "siret": "82 151 577 200 159", "mailKiosque": "vf.anglet@vertufood.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "ANNECY", "societe": "LA FRAICHERIE", "concepts": "FRAICHERIE", "enseigne": "CARREFOUR", "fleg": "LABO LYON", "snacking": "LABO LYON", "fsol": "NON", "region": "Rhône Alpes", "dr": "Nicolas", "telDr": "06 24 02 61 05", "mailDr": "nicolas@vertufood.com", "gestionnaire": "Kevin", "telPdv": "06 60 03 91 73", "mailFacturation": "factures.fournisseurs@lafraicherie.com", "fournisseurFleg": "Viale et Dumay", "fournisseurFrais": "Pro à Pro", "adresse": "La Fraîcherie Annecy, Centre commercial Auchan, Quai alimentaire Auchan, Rue du commerce", "cp": "74330", "siret": "84 926 105 200 286", "mailKiosque": "annecy@lafraicherie.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "ANTIBES", "societe": "VERTUFOOD", "concepts": "VERTU", "enseigne": "CARREFOUR", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Sud Est", "dr": "Sabine", "telDr": "06 58 57 50 45", "mailDr": "sabine.atlei@lafraicherie.com", "gestionnaire": "Oscar", "telPdv": "07 49 86 66 96", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Viale et Dumay", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "Chemin de Saint-Claude - Bretelle De L'autoroute", "cp": "06600", "siret": "82 151 577 200 258", "mailKiosque": "vf.antibes@vertufood.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "AUBAGNE", "societe": "LA FRAICHERIE", "concepts": "FRAICHERIE", "enseigne": "AUCHAN", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "LA LAITERIE", "region": "Sud Est", "dr": "Sabine", "telDr": "06 58 57 50 45", "mailDr": "sabine.atlei@lafraicherie.com", "gestionnaire": "Fatima", "telPdv": "06 64 81 34 50", "mailFacturation": "factures.fournisseurs@lafraicherie.com", "fournisseurFleg": "Viale et Dumay", "fournisseurFrais": "Pro à Pro", "adresse": "La Fraîcherie Aubagne, Centre commercial Auchan, Quai alimentaire Auchan, Route de Gemenos", "cp": "13400", "siret": "84 926 105 200 278", "mailKiosque": "aubagne@lafraicherie.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "BAILLE", "societe": "VERTUFOOD", "concepts": "VERTU", "enseigne": "INTERMARCHÉ", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Sud Est", "dr": "Sabine", "telDr": "06 58 57 50 45", "mailDr": "sabine.atlei@lafraicherie.com", "gestionnaire": "Jean baptiste", "telPdv": "06 45 42 12 01", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Viale et Dumay", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "22 Boulevard Jean Moulin", "cp": "13005", "siret": "82 151 577 200 050", "mailKiosque": "vf.marseillebaille@vertufood.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "BALMA", "societe": "VERTUFOOD", "concepts": "VERTU", "enseigne": "INTERMARCHÉ", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Occitanie", "dr": "Anabelle", "telDr": "06 50 17 88 86", "mailDr": "anabelle@vertufood.com", "gestionnaire": "Nisrine", "telPdv": "06 02 92 79 59", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Garonne fruit", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "31 Av. des Arènes", "cp": "31130", "siret": "82 151 577 200 357", "mailKiosque": "vf.balma@vertufood.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "BEAUGRENELLE", "societe": "VERTUFOOD", "concepts": "VERTU", "enseigne": "MONOPRIX", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Paris", "dr": "Khadim", "telDr": "07 44 43 78 58", "mailDr": "khadim.diouf@kumofoods.com", "gestionnaire": "Cindy", "telPdv": "06 69 74 49 83", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Monloup", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "Centre commercial Beaugrenelle, 19 rue Linois", "cp": "75015", "siret": "82 151 577 200 506", "mailKiosque": "vf.beaugrenelle@vertufood.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "BELLESFEUILLES", "societe": "LA FRAICHERIE", "concepts": "FRAICHERIE", "enseigne": "AUCHAN", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Nord", "dr": "Khadim", "telDr": "07 44 43 78 58", "mailDr": "khadim.diouf@kumofoods.com", "gestionnaire": "", "telPdv": "", "mailFacturation": "factures.fournisseurs@lafraicherie.com", "fournisseurFleg": "Monloup", "fournisseurFrais": "Pro à Pro", "adresse": "La Fraîcherie Belles Feuilles, Quai de réception Auchan, Centre commercial des Belles Feuilles, 16 Rue des Belles Feuilles", "cp": "75116", "siret": "84 926 105 200 328", "mailKiosque": "bellesfeuilles@lafraicherie.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "BIGANOS", "societe": "LA FRAICHERIE", "concepts": "FRAICHERIE", "enseigne": "AUCHAN", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Sud Ouest", "dr": "Morgane", "telDr": "06 69 76 30 98", "mailDr": "morgane.bertin@lafraicherie.com", "gestionnaire": "Jennifer", "telPdv": "07 69 63 45 56", "mailFacturation": "factures.fournisseurs@lafraicherie.com", "fournisseurFleg": "Trias", "fournisseurFrais": "Pro à Pro", "adresse": "La Fraîcherie Biganos, Centre commercial Auchan, Quai alimentaire Auchan, 31 Rue des Fonderies", "cp": "33380", "siret": "84 926 105 200 369", "mailKiosque": "biganos@lafraicherie.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "BLAGNAC", "societe": "LA FRAICHERIE", "concepts": "FRAICHERIE", "enseigne": "LECLERC", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Occitanie", "dr": "Anabelle", "telDr": "06 50 17 88 86", "mailDr": "anabelle@vertufood.com", "gestionnaire": "Lola", "telPdv": "06 34 68 10 56", "mailFacturation": "factures.fournisseurs@lafraicherie.com", "fournisseurFleg": "Garonne fruit", "fournisseurFrais": "Pro à Pro", "adresse": "La Fraîcherie Blagnac, Centre commercial Leclerc, Quai alimentaire Leclerc, 2 allée Emile Zola", "cp": "31715", "siret": "84 926 105 200 385", "mailKiosque": "blagnac@lafraicherie.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "BONNEVEINE", "societe": "VERTUFOOD", "concepts": "VERTU + YUN", "enseigne": "CARREFOUR", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Sud Est", "dr": "Sabine", "telDr": "06 58 57 50 45", "mailDr": "sabine.atlei@lafraicherie.com", "gestionnaire": "Nasser", "telPdv": "06 15 49 57 25", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Viale et Dumay", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "112 Avenue de Hambourg", "cp": "13008", "siret": "82 151 577 200 167", "mailKiosque": "vf.marseillebonneveine@vertufood.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "BORDEAUX LAC", "societe": "LA FRAICHERIE", "concepts": "FRAICHERIE", "enseigne": "AUCHAN", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Sud Ouest", "dr": "Morgane", "telDr": "06 69 76 30 98", "mailDr": "morgane.bertin@lafraicherie.com", "gestionnaire": "Afyaa", "telPdv": "06 62 93 29 79", "mailFacturation": "factures.fournisseurs@lafraicherie.com", "fournisseurFleg": "Trias", "fournisseurFrais": "Pro à Pro", "adresse": "La Fraîcherie Bordeaux Lac, Centre Commercial Auchan, Quai alimentaire Auchan, Avenue des 40 journeaux", "cp": "33080", "siret": "84 926 105 200 104", "mailKiosque": "bordeauxlac@lafraicherie.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "BOULIAC", "societe": "LA FRAICHERIE", "concepts": "FRAICHERIE", "enseigne": "AUCHAN", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Sud Ouest", "dr": "Morgane", "telDr": "06 69 76 30 98", "mailDr": "morgane.bertin@lafraicherie.com", "gestionnaire": "Mickael", "telPdv": "06 68 84 91 38", "mailFacturation": "factures.fournisseurs@lafraicherie.com", "fournisseurFleg": "Trias", "fournisseurFrais": "Pro à Pro", "adresse": "La Fraîcherie Bouliac, Centre commercial Auchan, Quai Alimentaire Auchan, Rue de la Gabarre", "cp": "33270", "siret": "84 926 105 200 112", "mailKiosque": "bouliac@lafraicherie.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "CAP 3000", "societe": "VERTUFOOD", "concepts": "VERTU", "enseigne": "MONOPRIX", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Sud Est", "dr": "Sabine", "telDr": "06 58 57 50 45", "mailDr": "sabine.atlei@lafraicherie.com", "gestionnaire": "Thi Xinh", "telPdv": "06 49 87 72 28", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Viale et Dumay", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "CAP 3000, Avenue Eugène Donadei, 06700 Saint-Laurent-Du-Var", "cp": "06700", "siret": "82 151 577 200 423", "mailKiosque": "vf.cap3000@vertufood.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "CARCASSONNE", "societe": "VERTUFOOD", "concepts": "VERTU", "enseigne": "CARREFOUR", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Occitanie", "dr": "Anabelle", "telDr": "06 50 17 88 86", "mailDr": "anabelle@vertufood.com", "gestionnaire": "Paula", "telPdv": "06 27 74 01 67", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Occitane fruit", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "Pont Rouge - Zone industrielle - Rue Magellan", "cp": "11000", "siret": "82 151 577 200 191", "mailKiosque": "vf.carcassonne@vertufood.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "CARNOUX", "societe": "VERTUFOOD", "concepts": "VERTU", "enseigne": "INTERMARCHÉ", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Sud Est", "dr": "Sabine", "telDr": "06 58 57 50 45", "mailDr": "sabine.atlei@lafraicherie.com", "gestionnaire": "Patricia", "telPdv": "06 27 57 05 57", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Viale et Dumay", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "20 avenue Lavoisier", "cp": "13470", "siret": "82 151 577 200 589", "mailKiosque": "vf.carnoux@vertufood.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "CAUMARTIN", "societe": "VERTUFOOD", "concepts": "VERTU", "enseigne": "MONOPRIX", "fleg": "SUR PLACE", "snacking": "LABO AMS", "fsol": "SUR PLACE", "region": "Paris", "dr": "Khadim", "telDr": "07 44 43 78 58", "mailDr": "khadim.diouf@kumofoods.com", "gestionnaire": "Awa", "telPdv": "07 81 82 62 01", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Monloup", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "56 Rue de Caumartin", "cp": "75009", "siret": "82 151 577 200 688", "mailKiosque": "vf.caumartin@vertufood.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "CHAMBRAY", "societe": "LA FRAICHERIE", "concepts": "FRAICHERIE", "enseigne": "AUCHAN", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Nord Ouest", "dr": "David", "telDr": "06 68 57 87 43", "mailDr": "david@vertufood.com", "gestionnaire": "Angelica", "telPdv": "07 68 79 82 76", "mailFacturation": "factures.fournisseurs@lafraicherie.com", "fournisseurFleg": "Monloup Dev", "fournisseurFrais": "Pro à Pro", "adresse": "La Fraîcherie Chambray, Centre Commercial Auchan, Quai alimentaire Auchan, Rue du Joué", "cp": "37170", "siret": "84 926 105 200 146", "mailKiosque": "chambray@lafraicherie.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "CHARENTON", "societe": "VERTUFOOD", "concepts": "VERTU + KUMO", "enseigne": "INTERMARCHÉ", "fleg": "SUR PLACE", "snacking": "LABO AMS", "fsol": "NON", "region": "Paris", "dr": "Khadim", "telDr": "07 44 43 78 58", "mailDr": "khadim.diouf@kumofoods.com", "gestionnaire": "", "telPdv": "", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Monloup", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "163 Rue De Charenton, Paris", "cp": "75012", "siret": "82 151 577 200 720", "mailKiosque": "vf.charenton@vertufood.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "CHARNAY", "societe": "VERTUFOOD", "concepts": "VERTU", "enseigne": "CARREFOUR", "fleg": "SUR PLACE", "snacking": "LABO LYON", "fsol": "LA LAITERIE", "region": "Rhône Alpes", "dr": "Nicolas", "telDr": "06 24 02 61 05", "mailDr": "nicolas@vertufood.com", "gestionnaire": "Gift", "telPdv": "07 82 28 80 39", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Sapam", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "Rue de la Chapelle", "cp": "71850", "siret": "82 151 577 200 118", "mailKiosque": "vf.charnay@vertufood.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "CHARTRES", "societe": "VERTUFOOD", "concepts": "VERTU + YUN", "enseigne": "CARREFOUR", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Nord", "dr": "Arold", "telDr": "07 69 87 46 05", "mailDr": "arold.mouambiko@lafraicherie.com", "gestionnaire": "Abdouramane", "telPdv": "07 51 09 63 66", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "PVM", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "Quartier de la madeleine, Avenue Marcel Proust", "cp": "28000", "siret": "82 151 577 200 472", "mailKiosque": "vf.chartres@vertufood.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "COLOMBES", "societe": "VERTUFOOD", "concepts": "VERTU", "enseigne": "CARREFOUR", "fleg": "SUR PLACE", "snacking": "LABO AMS", "fsol": "SUR PLACE", "region": "Paris", "dr": "Khadim", "telDr": "07 44 43 78 58", "mailDr": "khadim.diouf@kumofoods.com", "gestionnaire": "Dylan", "telPdv": "06 30 35 34 12", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Monloup", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "85 rue saint denis", "cp": "92700", "siret": "82 151 577 200 548", "mailKiosque": "vf.colombes@vertufood.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "CROISE LA ROCHE", "societe": "VERTUFOOD", "concepts": "VERTU", "enseigne": "MONOPRIX", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Nord", "dr": "Arold", "telDr": "07 69 87 46 05", "mailDr": "arold.mouambiko@lafraicherie.com", "gestionnaire": "", "telPdv": "", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Ballester", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "1002 avenue de la République", "cp": "59700", "siret": "82 151 577 200 480", "mailKiosque": "vf.croiselaroche@vertufood.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "DAMES", "societe": "VERTUFOOD", "concepts": "VERTU", "enseigne": "MONOPRIX", "fleg": "SUR PLACE", "snacking": "LABO AMS", "fsol": "SUR PLACE", "region": "Paris", "dr": "Khadim", "telDr": "07 44 43 78 58", "mailDr": "khadim.diouf@kumofoods.com", "gestionnaire": "Jean Charles", "telPdv": "06 63 44 65 24", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Monloup", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "125 rue des dames", "cp": "75017", "siret": "82 151 577 200 530", "mailKiosque": "vf.dames@vertufood.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "DARDILLY", "societe": "LA FRAICHERIE", "concepts": "FRAICHERIE", "enseigne": "AUCHAN", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Rhône Alpes", "dr": "Nicolas", "telDr": "06 24 02 61 05", "mailDr": "nicolas@vertufood.com", "gestionnaire": "Safia", "telPdv": "06 31 49 79 61", "mailFacturation": "factures.fournisseurs@lafraicherie.com", "fournisseurFleg": "Viale et Dumay", "fournisseurFrais": "Pro à Pro", "adresse": "La Fraîcherie Dardilly, Centre Commercial Auchan, Quai alimentaire Auchan, Route nationale 6 - Lieu dit La Garde", "cp": "69570", "siret": "84 926 105 200 054", "mailKiosque": "dardilly@lafraicherie.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "DAX", "societe": "VERTUFOOD", "concepts": "VERTU", "enseigne": "INTERMARCHÉ", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Sud Ouest", "dr": "Morgane", "telDr": "06 69 76 30 98", "mailDr": "morgane.bertin@lafraicherie.com", "gestionnaire": "Sofia", "telPdv": "06 04 67 27 29", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Fraichadour", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "1 route de la Parcelle", "cp": "40100", "siret": "82 151 577 200 464", "mailKiosque": "vf.dax@vertufood.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "DIJON", "societe": "VERTUFOOD", "concepts": "VERTU", "enseigne": "CARREFOUR", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Rhône Alpes", "dr": "Nicolas", "telDr": "06 24 02 61 05", "mailDr": "nicolas@vertufood.com", "gestionnaire": "Stephane", "telPdv": "06 43 33 84 58", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Sapam", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "Centre Commercial De La Toison D'Or - Route Departementale 974", "cp": "21000", "siret": "82 151 577 200 134", "mailKiosque": "vf.dijontoisondor@vertufood.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "ECULLY", "societe": "VERTUFOOD", "concepts": "VERTU", "enseigne": "CARREFOUR", "fleg": "SUR PLACE", "snacking": "LABO LYON", "fsol": "LA LAITERIE", "region": "Rhône Alpes", "dr": "Nicolas", "telDr": "06 24 02 61 05", "mailDr": "nicolas@vertufood.com", "gestionnaire": "wilfried", "telPdv": "06 32 11 45 88", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Viale et Dumay", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "Centre Commercial Ecully Grand Ouest - Avenue du Bon Pasteur", "cp": "69130", "siret": "82 151 577 200 514", "mailKiosque": "vf.ecully@vertufood.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "ENGLOS", "societe": "LA FRAICHERIE", "concepts": "FRAICHERIE", "enseigne": "AUCHAN", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Nord", "dr": "Arold", "telDr": "07 69 87 46 05", "mailDr": "arold.mouambiko@lafraicherie.com", "gestionnaire": "", "telPdv": "", "mailFacturation": "factures.fournisseurs@lafraicherie.com", "fournisseurFleg": "Ballester", "fournisseurFrais": "Pro à Pro", "adresse": "La Fraîcherie Englos, Centre Commercial Auchan, Quai alimentaire Auchan, 352, Route nationale", "cp": "59320", "siret": "84 926 105 200 096", "mailKiosque": "englos@lafraicherie.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "EURALILLE", "societe": "VERTUFOOD", "concepts": "VERTU", "enseigne": "CARREFOUR", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Nord", "dr": "Arold", "telDr": "07 69 87 46 05", "mailDr": "arold.mouambiko@lafraicherie.com", "gestionnaire": "", "telPdv": "06 19 25 06 03", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Ballester", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "1 Centre commercial Euralille, 59000 Lille", "cp": "59000", "siret": "82 151 577 200 332", "mailKiosque": "vf.euralille@vertufood.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "FLANDRE", "societe": "KUMO", "concepts": "VERTU + KUMO", "enseigne": "INTERMARCHÉ", "fleg": "NON", "snacking": "NON", "fsol": "NON", "region": "Paris", "dr": "Khadim", "telDr": "07 44 43 78 58", "mailDr": "khadim.diouf@kumofoods.com", "gestionnaire": "", "telPdv": "", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Monloup", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "77 avenue de Flandre, Paris", "cp": "75019", "siret": "82 151 577 200 746", "mailKiosque": "vf.flandres@vertufood.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "FLINS", "societe": "VERTUFOOD", "concepts": "VERTU", "enseigne": "CARREFOUR", "fleg": "SUR PLACE", "snacking": "LABO AMS", "fsol": "SUR PLACE", "region": "Paris", "dr": "Arold", "telDr": "07 69 87 46 05", "mailDr": "arold.mouambiko@lafraicherie.com", "gestionnaire": "", "telPdv": "", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Saint Prim", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "Route Départementale 14 - CD 14 ou 14 route Renaulr - Chemin départemental", "cp": "78410", "siret": "82 151 577 200 142", "mailKiosque": "vf.flinsurseine@vertufood.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "GASSIN", "societe": "LA FRAICHERIE", "concepts": "FRAICHERIE", "enseigne": "AUCHAN", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Sud Est", "dr": "Sabine", "telDr": "06 58 57 50 45", "mailDr": "sabine.atlei@lafraicherie.com", "gestionnaire": "Nadège", "telPdv": "06 37 30 44 67", "mailFacturation": "factures.fournisseurs@lafraicherie.com", "fournisseurFleg": "Viale et Dumay", "fournisseurFrais": "Pro à Pro", "adresse": "La Fraîcherie Gassin, Centre Commercial Auchan, Quai alimentaire Auchan, 120 Rond point Foux", "cp": "83580", "siret": "84 926 105 200 179", "mailKiosque": "gassinlafoux@lafraicherie.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "GIF-SUR-YVETTE", "societe": "VERTUFOOD", "concepts": "VERTU", "enseigne": "CARREFOUR", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Paris", "dr": "Arold", "telDr": "07 69 87 46 05", "mailDr": "arold.mouambiko@lafraicherie.com", "gestionnaire": "", "telPdv": "", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Saint Prim", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "6 bis Route du Val Courcelle Zac", "cp": "91190", "siret": "82 151 577 200 175", "mailKiosque": "vf.gifsuryvette@vertufood.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "GOUESNOU", "societe": "KUMO", "concepts": "VERTU + YUN", "enseigne": "LECLERC", "fleg": "SUR PLACE", "snacking": "NON", "fsol": "NON", "region": "Bretagne", "dr": "Marine", "telDr": "06 34 44 03 58", "mailDr": "marine.viez@kumofoods.com", "gestionnaire": "", "telPdv": "", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Le Saint", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "PORTE DE GOUESNOU Kergaradec, 29850 GOUESNOU", "cp": "29850", "siret": "83 432 023 600 096", "mailKiosque": "", "creneaux": "6h00 - 10H00"}, {"kiosque": "LA DEFENSE", "societe": "LA FRAICHERIE", "concepts": "FRAICHERIE", "enseigne": "AUCHAN", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Nord", "dr": "Arold", "telDr": "07 69 87 46 05", "mailDr": "arold.mouambiko@lafraicherie.com", "gestionnaire": "", "telPdv": "", "mailFacturation": "factures.fournisseurs@lafraicherie.com", "fournisseurFleg": "Monloup", "fournisseurFrais": "Pro à Pro", "adresse": "La Fraîcherie Défense, Centre commercial Auchan, Quai alimentaire Auchan, Le Parvis de la Défense", "cp": "92800", "siret": "84 926 105 200 310", "mailKiosque": "ladefense@lafraicherie.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "LA ROCHELLE", "societe": "VERTUFOOD", "concepts": "VERTU", "enseigne": "HYPERU", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Nord Ouest", "dr": "David", "telDr": "06 68 57 87 43", "mailDr": "david@vertufood.com", "gestionnaire": "Anthonny", "telPdv": "06 87 23 13 45", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Monloup Dev", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "Route de Nantes - Rue du 14 Juillet", "cp": "17138", "siret": "82 151 577 200 449", "mailKiosque": "vf.larochelle@vertufood.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "LE CRÉS", "societe": "VERTUFOOD", "concepts": "VERTU", "enseigne": "CARREFOUR", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "LA LAITERIE", "region": "Occitanie", "dr": "Anabelle", "telDr": "06 50 17 88 86", "mailDr": "anabelle@vertufood.com", "gestionnaire": "", "telPdv": "", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Occitane fruit", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "RN 113", "cp": "34920", "siret": "82 151 577 200 407", "mailKiosque": "vf.lecres@vertufood.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "LECOURBE", "societe": "KUMO", "concepts": "VERTU + KUMO", "enseigne": "INTERMARCHÉ", "fleg": "SUR PLACE", "snacking": "LABO AMS", "fsol": "NON", "region": "Paris", "dr": "Khadim", "telDr": "07 44 43 78 58", "mailDr": "khadim.diouf@kumofoods.com", "gestionnaire": "", "telPdv": "", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Monloup", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "362 Rue配合 Lecourbe, Paris", "cp": "75012", "siret": "82 151 577 200 738", "mailKiosque": "", "creneaux": "6h00 - 10H00"}, {"kiosque": "LES ARANDES", "societe": "VERTUFOOD", "concepts": "VERTU", "enseigne": "HYPERU", "fleg": "SUR PLACE", "snacking": "LABO LYON", "fsol": "SUR PLACE", "region": "Rhône Alpes", "dr": "Nicolas", "telDr": "06 24 02 61 05", "mailDr": "nicolas@vertufood.com", "gestionnaire": "Denis", "telPdv": "06 20 14 67 99", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Sapam", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "33 Rue des Arandes, Talant", "cp": "21240", "siret": "82 151 577 200 647", "mailKiosque": "vf.arandes@vertufood.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "MAUREPAS", "societe": "LA FRAICHERIE", "concepts": "FRAICHERIE", "enseigne": "AUCHAN", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Nord", "dr": "Arold", "telDr": "07 69 87 46 05", "mailDr": "arold.mouambiko@lafraicherie.com", "gestionnaire": "", "telPdv": "", "mailFacturation": "factures.fournisseurs@lafraicherie.com", "fournisseurFleg": "Monloup", "fournisseurFrais": "Pro à Pro", "adresse": "La Fraîcherie Maurepas, Centre Commercial Auchan, Quai alimentaire Auchan, Avenue Johannes Gutenberg", "cp": "78310", "siret": "84 926 105 200 245", "mailKiosque": "maurepas@lafraicherie.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "MERIADECK", "societe": "LA FRAICHERIE", "concepts": "FRAICHERIE", "enseigne": "AUCHAN", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Sud Ouest", "dr": "Morgane", "telDr": "06 69 76 30 98", "mailDr": "morgane.bertin@lafraicherie.com", "gestionnaire": "Rosine", "telPdv": "06 67 68 00 45", "mailFacturation": "factures.fournisseurs@lafraicherie.com", "fournisseurFleg": "Trias", "fournisseurFrais": "Pro à Pro", "adresse": "La Fraîcherie Meriadeck, Centre Commercial Auchan, Quai alimentaire Auchan, Rue Robert Latelade", "cp": "33000", "siret": "84 926 105 200 120", "mailKiosque": "meriadeck@lafraicherie.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "MONTIVILLIERS", "societe": "LA FRAICHERIE", "concepts": "FRAICHERIE", "enseigne": "AUCHAN", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Nord", "dr": "Arold", "telDr": "07 69 87 46 05", "mailDr": "arold.mouambiko@lafraicherie.com", "gestionnaire": "", "telPdv": "", "mailFacturation": "factures.fournisseurs@lafraicherie.com", "fournisseurFleg": "Monloup Dev", "fournisseurFrais": "Pro à Pro", "adresse": "La Fraîcherie Montivilliers, Centre Commercial Auchan, Quai alimentaire Auchan, Avenue Maréchal Foch", "cp": "76290", "siret": "84 926 105 200 211", "mailKiosque": "montivilliers@lafraicherie.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "NANTES", "societe": "VERTUFOOD", "concepts": "VERTU", "enseigne": "CARREFOUR", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Nord Ouest", "dr": "David", "telDr": "06 68 57 87 43", "mailDr": "david@vertufood.com", "gestionnaire": "Sylvie", "telPdv": "06 68 51 14 82", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Monloup Dev", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "Centre commercial Beaulieu Centre, Rue Gaëtan Rondeau, 44000 Nantes", "cp": "44000", "siret": "82 151 577 200 431", "mailKiosque": "vf.nantesbeaulieu@vertufood.fr", "creneaux": "6h00 - 10H00"}, {"kiosque": "NARBONNE", "societe": "VERTUFOOD", "concepts": "VERTU", "enseigne": "CARREFOUR", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Occitanie", "dr": "Anabelle", "telDr": "06 50 17 88 86", "mailDr": "anabelle@vertufood.com", "gestionnaire": "Morgan", "telPdv": "06 49 37 11 77", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Occitane fruit", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "Cs 80103, avenue Maître Hubert Mouly", "cp": "11100", "siret": "82 151 577 200 282", "mailKiosque": "vf.narbonne@vertufood.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "NICE", "societe": "VERTUFOOD", "concepts": "VERTU", "enseigne": "CARREFOUR", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Sud Est", "dr": "Sabine", "telDr": "06 58 57 50 45", "mailDr": "sabine.atlei@lafraicherie.com", "gestionnaire": "Walid", "telPdv": "07 51 50 49 76", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Viale et Dumay", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "606 Boulevard du Mercantour", "cp": "06200", "siret": "82 151 577 200 274", "mailKiosque": "vf.niceling@vertufood.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "OLLIOULES", "societe": "VERTUFOOD", "concepts": "VERTU", "enseigne": "CARREFOUR", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Sud Est", "dr": "Sabine", "telDr": "06 58 57 50 45", "mailDr": "sabine.atlei@lafraicherie.com", "gestionnaire": "Corinne", "telPdv": "06 99 42 17 77", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Viale et Dumay", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "55 Chemin De La Bouyere", "cp": "83190", "siret": "82 151 577 200 613", "mailKiosque": "vf.ollioules@vertufood.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "ORLÉANS", "societe": "VERTUFOOD", "concepts": "VERTU", "enseigne": "CARREFOUR", "fleg": "SUR PLACE", "snacking": "LABO AMS", "fsol": "SUR PLACE", "region": "Paris", "dr": "Arold", "telDr": "07 69 87 46 05", "mailDr": "arold.mouambiko@lafraicherie.com", "gestionnaire": "Maelisse", "telPdv": "07 78 65 86 01", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Monloup Dev", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "3 Rue Saint-Yves", "cp": "45000", "siret": "82 151 577 200 365", "mailKiosque": "vf.orleans@vertufood.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "PART DIEU", "societe": "VERTUFOOD", "concepts": "VERTU", "enseigne": "CARREFOUR", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Rhône Alpes", "dr": "Nicolas", "telDr": "06 24 02 61 05", "mailDr": "nicolas@vertufood.com", "gestionnaire": "Léonard", "telPdv": "07 53 18 60 43", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Viale et Dumay", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "18 Rue Docteur Bouchut", "cp": "69003", "siret": "82 151 577 200 241", "mailKiosque": "vf.lyonpartdieu@vertufood.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "PAU", "societe": "LA FRAICHERIE", "concepts": "FRAICHERIE", "enseigne": "AUCHAN", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Sud Ouest", "dr": "Morgane", "telDr": "06 69 76 30 98", "mailDr": "morgane.bertin@lafraicherie.com", "gestionnaire": "Maeva", "telPdv": "06 17 15 45 73", "mailFacturation": "factures.fournisseurs@lafraicherie.com", "fournisseurFleg": "Fraichadour", "fournisseurFrais": "Pro à Pro", "adresse": "La Fraîcherie Pau, Centre Commercial Auchan, Quai alimentaire Auchan, 1 Avenue du Général Leclerc", "cp": "64000", "siret": "84 926 105 200 161", "mailKiosque": "pau@lafraicherie.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "PLAZA", "societe": "VERTUFOOD", "concepts": "VERTU", "enseigne": "MONOPRIX", "fleg": "SUR PLACE", "snacking": "LABO AMS", "fsol": "SUR PLACE", "region": "Paris", "dr": "Khadim", "telDr": "07 44 43 78 58", "mailDr": "khadim.diouf@kumofoods.com", "gestionnaire": "Peguy", "telPdv": "06 52 91 72 95", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Monloup", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "Passy Plaza, 53 rue de Passy", "cp": "75016", "siret": "82 151 577 200 597", "mailKiosque": "vf.plaza@vertufood.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "POITIERS", "societe": "VERTUFOOD", "concepts": "VERTU", "enseigne": "INTERMARCHÉ", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Nord Ouest", "dr": "David", "telDr": "06 68 57 87 43", "mailDr": "david@vertufood.com", "gestionnaire": "Samira", "telPdv": "07 69 17 46 20", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Monloup Dev", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "2 avenue de Lafayette", "cp": "86000", "siret": "82 151 577 200 555", "mailKiosque": "vf.poitiers@vertufood.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "PORTET", "societe": "VERTUFOOD", "concepts": "VERTU", "enseigne": "CARREFOUR", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Occitanie", "dr": "Anabelle", "telDr": "06 50 17 88 86", "mailDr": "anabelle@vertufood.com", "gestionnaire": "Astou", "telPdv": "06 44 78 82 58", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Garonne fruit", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "Boulevard de l'Europe", "cp": "31120", "siret": "82 151 577 200 498", "mailKiosque": "vf.portetsurgaronne@vertufood.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "QUETIGNY", "societe": "VERTUFOOD", "concepts": "VERTU", "enseigne": "CARREFOUR", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Rhône Alpes", "dr": "Nicolas", "telDr": "06 24 02 61 05", "mailDr": "nicolas@vertufood.com", "gestionnaire": "Marine", "telPdv": "07 83 73 21 08", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Sapam", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "Avenue de Bourgogne", "cp": "21800", "siret": "82 151 577 200 605", "mailKiosque": "vf.quetigny@vertufood.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "RATARIEUX", "societe": "VERTUFOOD", "concepts": "VERTU + YUN", "enseigne": "INTERMARCHÉ", "fleg": "LABO LYON", "snacking": "LABO LYON", "fsol": "LA LAITERIE", "region": "Rhône Alpes", "dr": "Nicolas", "telDr": "06 24 02 61 05", "mailDr": "nicolas@vertufood.com", "gestionnaire": "", "telPdv": "", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Terre Azur", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "Avenue Albert Raimond, Rue de Ratarieux, 42270 Saint-Priest-en-Jarez", "cp": "42270", "siret": "82 151 577 200 308", "mailKiosque": "vf.ratarieux@vertufood.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "RONCQ", "societe": "LA FRAICHERIE", "concepts": "FRAICHERIE", "enseigne": "AUCHAN", "fleg": "LABO LYON", "snacking": "LABO LYON", "fsol": "SUR PLACE", "region": "Nord", "dr": "Arold", "telDr": "07 69 87 46 05", "mailDr": "arold.mouambiko@lafraicherie.com", "gestionnaire": "", "telPdv": "", "mailFacturation": "factures.fournisseurs@lafraicherie.com", "fournisseurFleg": "Ballester", "fournisseurFrais": "Pro à Pro", "adresse": "La Fraîcherie Roncq, Centre Commercial Auchan, Quai alimentaire Auchan, Boulevard d'Halluin", "cp": "59223", "siret": "84 926 105 200 088", "mailKiosque": "roncq@lafraicherie.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "ROUFFIAC", "societe": "VERTUFOOD", "concepts": "VERTU", "enseigne": "LECLERC", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Occitanie", "dr": "Anabelle", "telDr": "06 50 17 88 86", "mailDr": "anabelle@vertufood.com", "gestionnaire": "Valentin", "telPdv": "07 77 99 59 46", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Garonne fruit", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "RD 888 - Route d'Albi", "cp": "31180", "siret": "82 151 577 200 316", "mailKiosque": "vf.rouffiac@vertufood.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "SABLES D'OLONNE", "societe": "KUMO", "concepts": "VERTU + KUMO", "enseigne": "INTERMARCHÉ", "fleg": "SUR PLACE", "snacking": "LABO AMS", "fsol": "SUR PLACE", "region": "Paris", "dr": "David", "telDr": "06 68 57 87 43", "mailDr": "david@vertufood.com", "gestionnaire": "", "telPdv": "", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Monloup Dev", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "Rue des Plesses, 85180 Les Sables-d'Olonne", "cp": "85180", "siret": "", "mailKiosque": "vf.noisy@vertufood.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "SOISY", "societe": "LA FRAICHERIE", "concepts": "FRAICHERIE", "enseigne": "AUCHAN", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Paris", "dr": "Arold", "telDr": "07 69 87 46 05", "mailDr": "arold.mouambiko@lafraicherie.com", "gestionnaire": "", "telPdv": "", "mailFacturation": "factures.fournisseurs@lafraicherie.com", "fournisseurFleg": "Monloup", "fournisseurFrais": "Pro à Pro", "adresse": "La Fraîcherie Soisy, Centre Commercial Auchan, Quai alimentaire Auchan, 28 Avenue de Paris", "cp": "95230", "siret": "84 926 105 200 252", "mailKiosque": "soisy@lafraicherie.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "ST LOUP", "societe": "LA FRAICHERIE", "concepts": "FRAICHERIE", "enseigne": "AUCHAN", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Sud Est", "dr": "Sabine", "telDr": "06 58 57 50 45", "mailDr": "sabine.atlei@lafraicherie.com", "gestionnaire": "Bella", "telPdv": "07 80 15 09 47", "mailFacturation": "factures.fournisseurs@lafraicherie.com", "fournisseurFleg": "Viale et Dumay", "fournisseurFrais": "Pro à Pro", "adresse": "La Fraîcherie Marseille, Centre commercial Auchan, Quai alimentaire Auchan, 57 Boulevard Romain Rolland", "cp": "13010", "siret": "84 926 105 200 377", "mailKiosque": "marseille@lafraicherie.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "ST ORENS", "societe": "LA FRAICHERIE", "concepts": "FRAICHERIE", "enseigne": "LECLERC", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Occitanie", "dr": "Anabelle", "telDr": "06 50 17 88 86", "mailDr": "anabelle@vertufood.com", "gestionnaire": "Ynès", "telPdv": "06 41 48 48 03", "mailFacturation": "factures.fournisseurs@lafraicherie.com", "fournisseurFleg": "Garonne fruit", "fournisseurFrais": "Pro à Pro", "adresse": "Centre commercial Leclerc, Quai alimentaire Leclerc,Allée des champs pinsons", "cp": "31650", "siret": "84 926 105 200 344", "mailKiosque": "saintorens@lafraicherie.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "ST PRIEST", "societe": "LA FRAICHERIE", "concepts": "FRAICHERIE", "enseigne": "AUCHAN", "fleg": "SUR PLACE", "snacking": "LABO LYON", "fsol": "LA LAITERIE", "region": "Rhône Alpes", "dr": "Nicolas", "telDr": "06 24 02 61 05", "mailDr": "nicolas@vertufood.com", "gestionnaire": "Madline", "telPdv": "06 63 93 07 88", "mailFacturation": "factures.fournisseurs@lafraicherie.com", "fournisseurFleg": "Saint Fruit", "fournisseurFrais": "Pro à Pro", "adresse": "La Fraîcherie St Priest, Centre Commercial Auchan, Quai alimentaire Auchan, PORTES DES ALPES, ZAC DU CHAMP DU PONT", "cp": "69800", "siret": "84 926 105 200 047", "mailKiosque": "saintpriest@lafraicherie.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "TARNOS", "societe": "VERTUFOOD", "concepts": "VERTU", "enseigne": "CARREFOUR", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Sud Ouest", "dr": "Morgane", "telDr": "06 69 76 30 98", "mailDr": "morgane.bertin@lafraicherie.com", "gestionnaire": "Isabelle", "telPdv": "06 63 13 25 00", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Fraichadour", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "Boulevard Jacques Duclos", "cp": "40220", "siret": "82 151 577 200 456", "mailKiosque": "vf.tarnos@vertufood.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "TASSIN", "societe": "VERTUFOOD", "concepts": "VERTU", "enseigne": "INTERMARCHÉ", "fleg": "SUR PLACE", "snacking": "LABO LYON", "fsol": "SUR PLACE", "region": "Rhône Alpes", "dr": "Nicolas", "telDr": "06 24 02 61 05", "mailDr": "nicolas@vertufood.com", "gestionnaire": "Christopher", "telPdv": "06 56 72 43 29", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Viale et Dumay", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "6 Promenade des Tuileries", "cp": "69160", "siret": "82 151 577 200 027", "mailKiosque": "vf.tassin@vertufood.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "TAVERNY", "societe": "LA FRAICHERIE", "concepts": "FRAICHERIE", "enseigne": "AUCHAN", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Paris", "dr": "Arold", "telDr": "07 69 87 46 05", "mailDr": "arold.mouambiko@lafraicherie.com", "gestionnaire": "", "telPdv": "", "mailFacturation": "factures.fournisseurs@lafraicherie.com", "fournisseurFleg": "Monloup", "fournisseurFrais": "Pro à Pro", "adresse": "La Fraîcherie Taverny, Centre Commercial Auchan, Quai alimentaire Auchan, Portes de Taverny", "cp": "95150", "siret": "84 926 105 200 260", "mailKiosque": "taverny@lafraicherie.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "TOULOUSE", "societe": "LA FRAICHERIE", "concepts": "FRAICHERIE", "enseigne": "AUCHAN", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Occitanie", "dr": "Anabelle", "telDr": "06 50 17 88 86", "mailDr": "anabelle@vertufood.com", "gestionnaire": "Anaïs", "telPdv": "06 38 10 56 09", "mailFacturation": "factures.fournisseurs@lafraicherie.com", "fournisseurFleg": "Garonne fruit", "fournisseurFrais": "Pro à Pro", "adresse": "La Fraîcherie Toulouse, Centre Commercial Auchan, Quai alimentaire Auchan, Espace Gramont, 2 chemin de Gabardie", "cp": "31000", "siret": "84 926 105 200 294", "mailKiosque": "toulouse@lafraicherie.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "VALMANTE", "societe": "VERTUFOOD", "concepts": "VERTU", "enseigne": "INTERMARCHÉ", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Sud Est", "dr": "Sabine", "telDr": "06 58 57 50 45", "mailDr": "sabine.atlei@lafraicherie.com", "gestionnaire": "Mickael", "telPdv": "06 13 98 59 57", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Viale et Dumay", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "Av. du Maréchal de Lattre de Tassigny, 13009 Marseille", "cp": "13009", "siret": "82 151 577 200 662", "mailKiosque": "vf.valmante@vertufood.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "VELIZY", "societe": "LA FRAICHERIE", "concepts": "FRAICHERIE", "enseigne": "AUCHAN", "fleg": "SUR PLACE", "snacking": "LABO LYON", "fsol": "SUR PLACE", "region": "Paris", "dr": "Khadim", "telDr": "07 44 43 78 58", "mailDr": "khadim.diouf@kumofoods.com", "gestionnaire": "", "telPdv": "", "mailFacturation": "factures.fournisseurs@lafraicherie.com", "fournisseurFleg": "Monloup", "fournisseurFrais": "Pro à Pro", "adresse": "La Fraîcherie Vélizy, Centre commercial Auchan Vélizy2, Quai alimentaire Auchan, Avenue de l'Europe", "cp": "78140", "siret": "84 926 105 200 237", "mailKiosque": "velizy@lafraicherie.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "VILLEBON S/YVETTE", "societe": "LA FRAICHERIE", "concepts": "FRAICHERIE", "enseigne": "AUCHAN", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Nord", "dr": "Arold", "telDr": "07 69 87 46 05", "mailDr": "arold.mouambiko@lafraicherie.com", "gestionnaire": "Suzy", "telPdv": "06 20 49 76 40", "mailFacturation": "factures.fournisseurs@lafraicherie.com", "fournisseurFleg": "Monloup", "fournisseurFrais": "Pro à Pro", "adresse": "La Fraîcherie Villebon, Centre Commercial Auchan, Quai alimentaire Auchan, Chemin de Briis, BP 309", "cp": "91140", "siret": "84 926 105 200 187", "mailKiosque": "villebon@lafraicherie.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "VILLENEUVE D'ASQ", "societe": "LA FRAICHERIE", "concepts": "FRAICHERIE", "enseigne": "AUCHAN", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Nord", "dr": "Arold", "telDr": "07 69 87 46 05", "mailDr": "arold.mouambiko@lafraicherie.com", "gestionnaire": "", "telPdv": "", "mailFacturation": "factures.fournisseurs@lafraicherie.com", "fournisseurFleg": "Ballester", "fournisseurFrais": "Pro à Pro", "adresse": "La Fraîcherie V2, Centre Commercial Auchan, Quai alimentaire Auchan, Quartier de l'hotel de ville - Rue du ventoux", "cp": "59650", "siret": "84 926 105 200 062", "mailKiosque": "villeneuvedascq@lafraicherie.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "VILLIERS EN BIÈRE", "societe": "VERTUFOOD", "concepts": "VERTU", "enseigne": "CARREFOUR", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Paris", "dr": "Arold", "telDr": "07 69 87 46 05", "mailDr": "arold.mouambiko@lafraicherie.com", "gestionnaire": "", "telPdv": "", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Saint Prim", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "7 Route de Paris OU Route nationale 7 - Centre commercial Villier en Bi", "cp": "77190", "siret": "82 151 577 200 217", "mailKiosque": "vf.villiersenbiere@vertufood.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "VITROLLES", "societe": "VERTUFOOD", "concepts": "VERTU", "enseigne": "CARREFOUR", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Sud Est", "dr": "Sabine", "telDr": "06 58 57 50 45", "mailDr": "sabine.atlei@lafraicherie.com", "gestionnaire": "Mehdi", "telPdv": "06 02 41 78 00", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Viale et Dumay", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "Carrefour des Griffons, RN113, 13127 Vitrolles", "cp": "13127", "siret": "82 151 577 200 373", "mailKiosque": "vf.vitrolles@vertufood.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "ORGEVAL", "societe": "VERTUFOOD", "concepts": "VERTU + KUMO + YUN", "enseigne": "INTERMARCHÉ", "fleg": "SUR PLACE", "snacking": "LABO AMS", "fsol": "SUR PLACE", "region": "Paris", "dr": "Khadim", "telDr": "07 44 43 78 58", "mailDr": "khadim.diouf@kumofoods.com", "gestionnaire": "Jeremy", "telPdv": "06 95 41 42 03", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Monloup Dev", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "Route de Quarante Sous, Rn 13, 78630 Orgeval", "cp": "78630", "siret": "82 15 1577 200 712", "mailKiosque": "vf.orgeval@vertufood.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "CLICHY", "societe": "VERTUFOOD", "concepts": "VERTU + KUMO", "enseigne": "INTERMARCHÉ", "fleg": "SUR PLACE", "snacking": "LABO AMS", "fsol": "SUR PLACE", "region": "Paris", "dr": "Khadim", "telDr": "07 44 43 78 58", "mailDr": "khadim.diouf@kumofoods.com", "gestionnaire": "", "telPdv": "", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Monloup", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "16 BD jean jaurès , 92110 clichy", "cp": "92110", "siret": "", "mailKiosque": "vf.clichy@vertufood.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "ORVAULT", "societe": "VERTUFOOD", "concepts": "VERTU", "enseigne": "LECLERC", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Nord Ouest", "dr": "David", "telDr": "06 68 57 87 43", "mailDr": "david@vertufood.com", "gestionnaire": "", "telPdv": "", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Monloup Dev", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "1 Rue de la Conraie, 44700 Orvault", "cp": "44700", "siret": "82 151 577 200 753", "mailKiosque": "vf.orvault@vertufood.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "EVIAN", "societe": "KUMO", "concepts": "KUMO", "enseigne": "GRAND FRAIS", "fleg": "NON", "snacking": "NON", "fsol": "NON", "region": "Rhône Alpes", "dr": "Nicolas", "telDr": "06 24 02 61 05", "mailDr": "nicolas@vertufood.com", "gestionnaire": "", "telPdv": "", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Leman Primeurs", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "7 Av. des Bocquies, 74500 Évian-les-Bains", "cp": "74500", "siret": "", "mailKiosque": "vf.evian@vertufood.com", "creneaux": "6h00 - 10H00"}, {"kiosque": "NOISY LE GRAND", "societe": "VERTUFOOD", "concepts": "VERTU + KUMO + YUN", "enseigne": "MONOPRIX", "fleg": "SUR PLACE", "snacking": "SUR PLACE", "fsol": "SUR PLACE", "region": "Paris", "dr": "Florian", "telDr": "06 38 28 56 57", "mailDr": "florian@kumofoods.com", "gestionnaire": "", "telPdv": "", "mailFacturation": "factures.fournisseurs@vertufood.com", "fournisseurFleg": "Monloup", "fournisseurFrais": "EpiSaveurs + PassionFroid", "adresse": "6 Boulevard du Maréchal Foch", "cp": "93160", "siret": "", "mailKiosque": "vf.sableolonne@vertufood.com", "creneaux": "5H00 - 09H00"}];
+
+const KNOWN_COORDS = {
+  "20000": [41.926, 8.737], "44150": [47.373, -1.176], "49000": [47.478, -0.551],
+  "64600": [43.494, -1.517], "74330": [45.923, 6.096], "06600": [43.580, 7.125], "6600": [43.580, 7.125],
+  "13400": [43.292, 5.570], "13005": [43.287, 5.395], "31130": [43.612, 1.498],
+  "75015": [48.841, 2.299], "75116": [48.863, 2.276], "33380": [44.643, -0.974],
+  "31715": [43.636, 1.393], "13008": [43.256, 5.385], "33080": [44.887, -0.569], "33000": [44.837, -0.579],
+  "33270": [44.813, -0.505], "06700": [43.666, 7.195], "6700": [43.666, 7.195],
+  "11000": [43.213, 2.353], "13470": [43.256, 5.564], "75009": [48.877, 2.336],
+  "37170": [47.333, 0.712], "75012": [48.839, 2.388], "71850": [46.291, 4.776],
+  "28000": [48.443, 1.489], "92700": [48.922, 2.253], "59700": [50.662, 3.109],
+  "75017": [48.887, 2.317], "69570": [45.811, 4.752], "40100": [43.708, -1.053],
+  "21000": [47.322, 5.041], "69130": [45.776, 4.781], "59320": [50.627, 3.018],
+  "59000": [50.629, 3.057], "75019": [48.882, 2.382], "78410": [48.966, 1.870],
+  "83580": [43.232, 6.577], "91190": [48.701, 2.134], "29850": [48.450, -4.455],
+  "92800": [48.892, 2.238], "17138": [46.183, -1.139], "34920": [43.642, 3.937],
+  "21240": [47.336, 5.008], "78310": [48.761, 1.944], "76290": [49.539, 0.190],
+  "44000": [47.218, -1.553], "11100": [43.184, 3.003], "06200": [43.676, 7.215], "6200": [43.676, 7.215],
+  "83190": [43.140, 5.847], "45000": [47.902, 1.909], "69003": [45.760, 4.859],
+  "64000": [43.295, -0.370], "75016": [48.851, 2.268], "86000": [46.580, 0.340],
+  "31120": [43.522, 1.408], "21800": [47.310, 5.120], "42270": [45.474, 4.373],
+  "59223": [50.751, 3.119], "31180": [43.659, 1.524], "85180": [46.496, -1.783],
+  "95230": [48.987, 2.301], "13010": [43.273, 5.414], "33160": [44.896, -0.718],
+  "31650": [43.551, 1.536], "69800": [45.696, 4.945], "40220": [43.541, -1.460],
+  "69160": [45.763, 4.757], "95150": [49.027, 2.227], "13009": [43.242, 5.405],
+  "78140": [48.781, 2.189], "91140": [48.700, 2.228], "59650": [50.627, 3.145],
+  "77190": [48.494, 2.597], "13127": [43.442, 5.248], "78630": [48.920, 1.975],
+  "92220": [48.798, 2.316], "92110": [48.904, 2.306], "44700": [47.271, -1.624],
+  "74500": [46.401, 6.586], "93160": [48.841, 2.553], "31000": [43.604, 1.444]
+};
+
+const REGION_CENTROIDS = {
+  'Sud Est': [43.75, 5.9], 'Nord Ouest': [47.45, -0.75], 'Sud Ouest': [44.75, -0.55],
+  'Rhône Alpes': [45.75, 4.9], 'Occitanie': [43.65, 1.6], 'Paris': [48.85, 2.35],
+  'Nord': [50.55, 3.05], 'Bretagne': [48.25, -2.9]
+};
+
+const PALETTE = ['#2E7D5B','#E68A00','#2A6F97','#D82727','#6D6875','#E76F51','#2A9D8F','#F0A202','#264653','#8AB17D','#B5838D','#457B9D','#C1502E','#3F7D58','#D98C00','#5B8095','#9C6644','#4A7C59'];
+function colorFor(key, map){
+  if(!map.has(key)) map.set(key, PALETTE[map.size % PALETTE.length]);
+  return map.get(key);
+}
+const colorMaps = { fournisseurFleg:new Map(), dr:new Map(), concept:new Map(), societe:new Map() };
+
+colorMaps.societe.set('VERTUFOOD', '#F0A202');
+colorMaps.societe.set('LA FRAICHERIE', '#2A9D8F');
+colorMaps.societe.set('KUMO', '#D82727');
+const GREY = '#B0BEB7';
+
+/* LOGOS VECTORIELS */
+const LOGO_SVGS = {
+  vertu: `<svg viewBox="0 0 100 100" fill="none">
+    <path d="M50 86C26 70 12 55 12 36C12 22 23 12 37 12C43 12 47 15 50 19C53 15 57 12 63 12C77 12 88 22 88 36C88 55 74 70 50 86Z" stroke="#68B64F" stroke-width="9" fill="none" stroke-linejoin="round"/>
+    <path d="M50 18C50 10 56 4 64 4" stroke="#68B64F" stroke-width="8" stroke-linecap="round"/>
+    <path d="M40 50C40 55 44 57 44 57C44 57 44 50 40 50Z" fill="#68B64F"/>
+    <path d="M60 50C60 55 56 57 56 57C56 57 56 50 60 50Z" fill="#68B64F"/>
+  </svg>`,
+  fraicherie: `<svg viewBox="0 0 160 50" fill="none">
+    <path d="M12 25C7 18 12 8 20 12C28 16 22 28 15 35C10 40 5 32 12 25Z" stroke="#489745" stroke-width="4.5" stroke-linejoin="round"/>
+    <path d="M60 12C50 20 48 30 52 40C56 46 68 46 72 40C76 30 72 20 62 12Z" stroke="#489745" stroke-width="4.5"/>
+    <path d="M105 8C96 18 96 32 105 42C114 32 114 18 105 8Z" stroke="#489745" stroke-width="4.5"/>
+    <path d="M140 18C128 20 128 40 140 42C152 40 152 20 140 18Z" stroke="#489745" stroke-width="4.5"/>
+  </svg>`,
+  kumo: `<svg viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="48" fill="#D82727"/>
+    <text x="50" y="44" font-family="'Montserrat', sans-serif" font-weight="900" font-size="28" fill="#FFFFFF" text-anchor="middle" letter-spacing="-1">KU</text>
+    <text x="50" y="74" font-family="'Montserrat', sans-serif" font-weight="900" font-size="28" fill="#FFFFFF" text-anchor="middle" letter-spacing="-1">MO</text>
+  </svg>`
+};
+
+function getLogoForKiosk(k){
+  const c = (k.concepts || '').toUpperCase();
+  const s = (k.societe || '').toUpperCase();
+  if(c === 'KUMO' || s === 'KUMO') return LOGO_SVGS.kumo;
+  if(s.includes('FRAICHERIE') || c.includes('FRAICHERIE')) return LOGO_SVGS.fraicherie;
+  return LOGO_SVGS.vertu;
+}
+
+const LAYERS = [
+  { id:'all', group:'base', label:'Tous les kiosques', mode:'color', colorKey:'societe',
+    legend:()=>[['VERTUFOOD', colorMaps.societe.get('VERTUFOOD')],['LA FRAICHERIE', colorMaps.societe.get('LA FRAICHERIE')],['KUMO', colorMaps.societe.get('KUMO')]] },
+
+  /* 01 Livraison & production */
+  { id:'labolyon', group:'livraison', label:'Livrés par le Labo Lyon', mode:'filter',
+    test:k => k.fleg==='LABO LYON' || k.snacking==='LABO LYON', color:'#2E7D5B' },
+  { id:'ams', group:'livraison', label:'Livrés par AMS', mode:'filter',
+    test:k => k.fleg==='LABO AMS' || k.snacking==='LABO AMS', color:'#2A6F97' },
+  { id:'laiterie', group:'livraison', label:'Livrés par La Laiterie', mode:'filter',
+    test:k => k.fsol==='LA LAITERIE', color:'#E68A00' },
+  { id:'fraicherie', group:'livraison', label:'Kiosques Fraîcherie', mode:'filter',
+    test:k => (k.societe || '').includes('FRAICHERIE') || (k.concepts || '').includes('FRAICHERIE'), color:'#2A9D8F' },
+  { id:'vertu_kiosques', group:'livraison', label:'Kiosques Vertu', mode:'filter',
+    test:k => (k.concepts || '').includes('VERTU'), color:'#F0A202' },
+  { id:'kumo_kiosques', group:'livraison', label:'Kiosques Kumo', mode:'filter',
+    test:k => (k.concepts || '').includes('KUMO') || (k.societe || '') === 'KUMO', color:'#D82727' },
+
+  /* 02 Fournisseurs FLEG */
+  { id:'fleg_all', group:'fournisseurs', label:'Vue globale Fournisseurs FLEG', mode:'color', colorKey:'fournisseurFleg',
+    legend:()=>[...colorMaps.fournisseurFleg.entries()] },
+  { id:'fleg_viale', group:'fournisseurs', label:'Viale et Dumay', mode:'filter',
+    test:k => k.fournisseurFleg==='Viale et Dumay', color:'#2E7D5B' },
+  { id:'fleg_monloup_all', group:'fournisseurs', label:'Monloup Dev & Monloup', mode:'filter',
+    test:k => (k.fournisseurFleg||'').includes('Monloup'), color:'#2A6F97' },
+  { id:'fleg_monloup', group:'fournisseurs', label:'Monloup (seul)', mode:'filter',
+    test:k => k.fournisseurFleg==='Monloup', color:'#457B9D' },
+  { id:'fleg_monloup_dev', group:'fournisseurs', label:'Monloup Dev (seul)', mode:'filter',
+    test:k => k.fournisseurFleg==='Monloup Dev', color:'#5B8095' },
+  { id:'fleg_fraichadour', group:'fournisseurs', label:'Fraichadour', mode:'filter',
+    test:k => k.fournisseurFleg==='Fraichadour', color:'#E68A00' },
+  { id:'fleg_garonne', group:'fournisseurs', label:'Garonne fruit', mode:'filter',
+    test:k => k.fournisseurFleg==='Garonne fruit', color:'#E76F51' },
+  { id:'fleg_trias', group:'fournisseurs', label:'Trias', mode:'filter',
+    test:k => k.fournisseurFleg==='Trias', color:'#2A9D8F' },
+  { id:'fleg_occitane', group:'fournisseurs', label:'Occitane fruit', mode:'filter',
+    test:k => k.fournisseurFleg==='Occitane fruit', color:'#C1502E' },
+  { id:'fleg_sapam', group:'fournisseurs', label:'Sapam', mode:'filter',
+    test:k => k.fournisseurFleg==='Sapam', color:'#8AB17D' },
+  { id:'fleg_pvm', group:'fournisseurs', label:'PVM', mode:'filter',
+    test:k => k.fournisseurFleg==='PVM', color:'#F0A202' },
+  { id:'fleg_ballester', group:'fournisseurs', label:'Ballester', mode:'filter',
+    test:k => k.fournisseurFleg==='Ballester', color:'#264653' },
+  { id:'fleg_stprim', group:'fournisseurs', label:'Saint Prim', mode:'filter',
+    test:k => k.fournisseurFleg==='Saint Prim', color:'#B5838D' },
+  { id:'fleg_terreazur', group:'fournisseurs', label:'Terre Azur', mode:'filter',
+    test:k => k.fournisseurFleg==='Terre Azur', color:'#6D6875' },
+  { id:'fleg_stfruit', group:'fournisseurs', label:'Saint Fruit', mode:'filter',
+    test:k => k.fournisseurFleg==='Saint Fruit', color:'#3F7D58' },
+  { id:'fleg_leman', group:'fournisseurs', label:'Leman Primeurs', mode:'filter',
+    test:k => k.fournisseurFleg==='Leman Primeurs', color:'#9C6644' },
+  { id:'fleg_lesaint', group:'fournisseurs', label:'Le Saint', mode:'filter',
+    test:k => k.fournisseurFleg==='Le Saint', color:'#D82727' },
+
+  /* 03 Directeurs régionaux (DR) */
+  { id:'dr_all', group:'drs', label:'Vue globale des DR', mode:'color', colorKey:'dr',
+    legend:()=>[...colorMaps.dr.entries()] },
+  { id:'dr_arold', group:'drs', label:'DR : Arold', mode:'filter',
+    test:k => k.dr==='Arold', color:'#2A6F97' },
+  { id:'dr_sabine', group:'drs', label:'DR : Sabine', mode:'filter',
+    test:k => k.dr==='Sabine', color:'#2E7D5B' },
+  { id:'dr_nicolas', group:'drs', label:'DR : Nicolas', mode:'filter',
+    test:k => k.dr==='Nicolas', color:'#E68A00' },
+  { id:'dr_khadim', group:'drs', label:'DR : Khadim', mode:'filter',
+    test:k => k.dr==='Khadim', color:'#D82727' },
+  { id:'dr_anabelle', group:'drs', label:'DR : Anabelle', mode:'filter',
+    test:k => k.dr==='Anabelle', color:'#F0A202' },
+  { id:'dr_david', group:'drs', label:'DR : David', mode:'filter',
+    test:k => k.dr==='David', color:'#6D6875' },
+  { id:'dr_morgane', group:'drs', label:'DR : Morgane', mode:'filter',
+    test:k => k.dr==='Morgane', color:'#2A9D8F' },
+  { id:'dr_marine', group:'drs', label:'DR : Marine', mode:'filter',
+    test:k => k.dr==='Marine', color:'#8AB17D' },
+  { id:'dr_florian', group:'drs', label:'DR : Florian', mode:'filter',
+    test:k => k.dr==='Florian', color:'#C1502E' },
+
+  /* 04 Concepts */
+  { id:'vertu', group:'concepts', label:'Concept VERTU', mode:'filter',
+    test:k => k.concepts==='VERTU', color:'#F0A202' },
+  { id:'vertuyun', group:'concepts', label:'Concept VERTU + YUN', mode:'filter',
+    test:k => k.concepts==='VERTU + YUN', color:'#E76F51' },
+  { id:'vertukumo', group:'concepts', label:'Concept VERTU + KUMO', mode:'filter',
+    test:k => k.concepts==='VERTU + KUMO', color:'#264653' },
+  { id:'vertukumoyun', group:'concepts', label:'Concept VERTU + KUMO + YUN', mode:'filter',
+    test:k => k.concepts==='VERTU + KUMO + YUN', color:'#8AB17D' },
+  { id:'kumo_only', group:'concepts', label:'Concept KUMO seul', mode:'filter',
+    test:k => k.concepts==='KUMO', color:'#D82727' },
+  { id:'allconcepts', group:'concepts', label:'Vue globale des concepts', mode:'color', colorKey:'concept',
+    legend:()=>[...colorMaps.concept.entries()] },
+];
+let activeLayerId = 'all';
+
+KIOSQUES.forEach(k=>{
+  colorFor(k.fournisseurFleg || 'Non renseigné', colorMaps.fournisseurFleg);
+  colorFor(k.dr || 'Non renseigné', colorMaps.dr);
+  colorFor(k.concepts || 'Non renseigné', colorMaps.concept);
+});
+
+/* ============ MAP INIT ============ */
+const map = L.map('map', { zoomControl:true, minZoom:4, maxZoom:18 }).setView([46.6, 2.4], 6);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+  attribution: '&copy; OpenStreetMap &copy; CARTO', subdomains:'abcd', maxZoom:19
+}).addTo(map);
+
+function checkZoomBlur() {
+  if (map.getZoom() <= 6) {
+    document.body.classList.add('zoom-out-blurred');
+  } else {
+    document.body.classList.remove('zoom-out-blurred');
+  }
+}
+map.on('zoomend', checkZoomBlur);
+checkZoomBlur();
+
+const clusterGroup = L.markerClusterGroup({
+  maxClusterRadius:46,
+  iconCreateFunction:function(cluster){
+    const count = cluster.getChildCount();
+    const size = 36 + Math.min(count, 18);
+    return L.divIcon({ 
+      html:'<div class="marker-cluster-custom" style="width:'+size+'px;height:'+size+'px;"><span class="cluster-inner-text">'+count+'</span></div>', 
+      className:'', 
+      iconSize:null 
+    });
+  }
+});
+map.addLayer(clusterGroup);
+
+function makeLogoPinIcon(k, borderColor, hl){
+  const svgLogo = getLogoForKiosk(k);
+  return L.divIcon({
+    className:'',
+    html:`<div class="logo-marker-pin ${hl ? 'hl' : ''}" style="border-color:${borderColor};">${svgLogo}</div>`,
+    iconSize:[36, 36],
+    iconAnchor:[18, 18],
+    popupAnchor:[0, -20]
+  });
+}
+
+function jitter(lat, lon, seed){
+  const a = (seed*9301+49297)%233280/233280;
+  const b = ((seed*3+7)*9301+49297)%233280/233280;
+  return [lat + (a-0.5)*0.012, lon + (b-0.5)*0.012];
+}
+
+/* ============ BUILD MARKERS ============ */
+const geoStatus = document.getElementById('geoStatus');
+const geoStatusText = document.getElementById('geoStatusText');
+const geoBarFill = document.getElementById('geoBarFill');
+let markers = [];
+
+function getBrandThemeClass(k){
+  const c = (k.concepts || '').toUpperCase();
+  const s = (k.societe || '').toUpperCase();
+  if(c === 'KUMO' || s === 'KUMO') return 'bg-kumo';
+  if(s.includes('FRAICHERIE') || c.includes('FRAICHERIE')) return 'bg-fraicherie';
+  return 'bg-vertufood';
+}
+
+function popupHTML(k){
+  const pill = (label, val, active) => '<span class="pill '+(active?'on':'off')+'">'+label+(val?(': '+val):'')+'</span>';
+  const supplyRow = () => {
+    return '<div class="supply-pills">'
+      + pill('FLEG', k.fleg, k.fleg && k.fleg!=='NON')
+      + pill('Snacking', k.snacking, k.snacking && k.snacking!=='NON')
+      + pill('FSOL', k.fsol, k.fsol && k.fsol!=='NON')
+      + '</div>';
+  };
+  const row = (label, val, isLink) => {
+    if(!val) return '';
+    const v = isLink ? '<a href="mailto:'+val+'">'+val+'</a>' : val;
+    return '<div class="ph-row"><div class="k">'+label+'</div><div class="v">'+v+'</div></div>';
+  };
+  const themeClass = getBrandThemeClass(k);
+
+  return '<div class="popup-card ' + themeClass + '">'
+    + '<div class="ph-name">'+k.kiosque+'</div>'
+    + '<div class="ph-sub"><span class="tag brand">'+k.societe+'</span><span class="tag">'+k.enseigne+'</span>'+(k.concepts?'<span class="tag">'+k.concepts+'</span>':'')+'</div>'
+    + row('Adresse', (k.adresse||'')+(k.cp?(' — '+k.cp):''))
+    + row('Région / DR', k.region+(k.dr?(' · '+k.dr):''))
+    + row('Tél. DR', k.telDr)
+    + row('Gestionnaire', k.gestionnaire+(k.telPdv?(' · '+k.telPdv):''))
+    + '<div class="ph-row"><div class="k">Livraison</div><div class="v">'+supplyRow()+'</div></div>'
+    + row('Créneaux', k.creneaux)
+    + row('Fourn. FLEG', k.fournisseurFleg)
+    + row('Fourn. Frais/Épic.', k.fournisseurFrais)
+    + row('Mail kiosque', k.mailKiosque, true)
+    + row('Mail facturation', k.mailFacturation, true)
+    + row('SIRET', k.siret)
+    + '</div>';
+}
+
+function buildMarkers(){
+  geoBarFill.style.width = '100%';
+  geoStatus.classList.add('done');
+  geoStatusText.textContent = 'Localisation terminée';
+  setTimeout(()=>{ geoStatus.style.opacity='0'; geoStatus.style.pointerEvents='none'; }, 800);
+
+  const cpSeed = {};
+  KIOSQUES.forEach((k, idx)=>{
+    let base = KNOWN_COORDS[k.cp];
+    if(!base){
+      const rc = REGION_CENTROIDS[k.region] || [46.6, 2.4];
+      base = rc;
+    }
+    cpSeed[k.cp] = (cpSeed[k.cp]||0) + 1;
+    const [lat, lon] = jitter(base[0], base[1], idx + cpSeed[k.cp]*13);
+    const marker = L.marker([lat, lon], { icon: makeLogoPinIcon(k, GREY, false) });
+    marker.bindPopup(popupHTML(k), { maxWidth:320 });
+    marker.kioskData = k;
+    marker.latlngRaw = [lat, lon];
+    markers.push({ kiosk:k, marker });
+  });
+
+  populateFilters();
+  applyLayer('all');
+}
+
+/* ============ LAYER APPLICATION ============ */
+function applyLayer(layerId){
+  activeLayerId = layerId;
+  const layer = LAYERS.find(l=>l.id===layerId);
+  document.getElementById('activeLayerTitle').textContent = layer.label;
+
+  document.querySelectorAll('.layer-option').forEach(el=>{
+    el.classList.toggle('active', el.dataset.layerId===layerId);
+  });
+
+  const regionSel = document.getElementById('filterRegion').value;
+  const enseigneSel = document.getElementById('filterEnseigne').value;
+  const drSel = document.getElementById('filterDr').value;
+  const searchTerm = document.getElementById('searchInput').value.trim().toLowerCase();
+
+  clusterGroup.clearLayers();
+  let visibleCount = 0;
+
+  markers.forEach(({kiosk, marker})=>{
+    let matchesFilters = true;
+    if(regionSel && kiosk.region !== regionSel) matchesFilters = false;
+    if(enseigneSel && kiosk.enseigne !== enseigneSel) matchesFilters = false;
+    if(drSel && kiosk.dr !== drSel) matchesFilters = false;
+    if(searchTerm){
+      const hay = (kiosk.kiosque+' '+kiosk.enseigne+' '+kiosk.dr+' '+kiosk.region+' '+kiosk.cp+' '+(kiosk.adresse||'')).toLowerCase();
+      if(!hay.includes(searchTerm)) matchesFilters = false;
+    }
+
+    let isLayerMatch = true;
+    let borderColor = GREY;
+
+    if(layer.mode === 'color'){
+      const key = kiosk[layer.colorKey] || 'Non renseigné';
+      borderColor = colorFor(key, colorMaps[layer.colorKey]);
+    } else {
+      isLayerMatch = layer.test(kiosk);
+      borderColor = isLayerMatch ? layer.color : GREY;
+    }
+
+    const shouldShow = matchesFilters && isLayerMatch;
+
+    if(shouldShow){
+      marker.setIcon(makeLogoPinIcon(kiosk, borderColor, false));
+      clusterGroup.addLayer(marker);
+      visibleCount++;
+    }
+  });
+
+  document.getElementById('statVisible').textContent = visibleCount;
+  updateLegend(layer);
+  buildKioskList();
+}
+
+function updateLegend(layer){
+  const box = document.getElementById('legendBox');
+  const items = document.getElementById('legendItems');
+  if(layer.mode !== 'color'){ box.style.display='none'; return; }
+  const entries = layer.legend();
+  items.innerHTML = entries.map(([k,c])=>'<div class="legend-item"><span class="sw" style="background:'+c+';"></span>'+k+'</div>').join('');
+  box.style.display = 'block';
+}
+
+/* ============ SIDEBAR: LAYER BUTTONS ============ */
+function countForLayer(layer){
+  if(layer.mode === 'color') return KIOSQUES.length;
+  return KIOSQUES.filter(layer.test).length;
+}
+
+function renderLayerGroup(containerId, groupKey){
+  const el = document.getElementById(containerId);
+  el.innerHTML = LAYERS.filter(l=>l.group===groupKey).map(l=>{
+    const color = l.mode==='filter' ? l.color : '#879990';
+    const count = countForLayer(l);
+    return '<div class="layer-option" data-layer-id="'+l.id+'">'
+      + '<span class="swatch" style="background:'+color+';"></span>'
+      + '<span class="txt">'+l.label+'</span>'
+      + '<span class="count">'+count+'</span>'
+      + '</div>';
+  }).join('');
+}
+renderLayerGroup('grpLivraison','livraison');
+document.getElementById('grpLivraison').insertAdjacentHTML('afterbegin',
+  '<div class="layer-option active" data-layer-id="all"><span class="swatch" style="background:#2E7D5B;"></span><span class="txt">Tous les kiosques</span><span class="count">'+KIOSQUES.length+'</span></div>');
+renderLayerGroup('grpFournisseurs','fournisseurs');
+renderLayerGroup('grpDrs','drs');
+renderLayerGroup('grpConcepts','concepts');
+
+document.querySelectorAll('.layer-option').forEach(el=>{
+  el.addEventListener('click', ()=> applyLayer(el.dataset.layerId));
+});
+
+/* ============ FILTERS ============ */
+function populateFilters(){
+  const regions = [...new Set(KIOSQUES.map(k=>k.region).filter(Boolean))].sort();
+  const enseignes = [...new Set(KIOSQUES.map(k=>k.enseigne).filter(Boolean))].sort();
+  const drs = [...new Set(KIOSQUES.map(k=>k.dr).filter(Boolean))].sort();
+
+  const rSel = document.getElementById('filterRegion');
+  const eSel = document.getElementById('filterEnseigne');
+  const dSel = document.getElementById('filterDr');
+
+  regions.forEach(r=> rSel.insertAdjacentHTML('beforeend', '<option value="'+r+'">'+r+'</option>'));
+  enseignes.forEach(en=> eSel.insertAdjacentHTML('beforeend', '<option value="'+en+'">'+en+'</option>'));
+  drs.forEach(d=> dSel.insertAdjacentHTML('beforeend', '<option value="'+d+'">'+d+'</option>'));
+
+  document.getElementById('statRegions').textContent = regions.length;
+  document.getElementById('statTotal').textContent = KIOSQUES.length;
+
+  rSel.addEventListener('change', ()=>applyLayer(activeLayerId));
+  eSel.addEventListener('change', ()=>applyLayer(activeLayerId));
+  dSel.addEventListener('change', ()=>applyLayer(activeLayerId));
+  document.getElementById('searchInput').addEventListener('input', ()=>applyLayer(activeLayerId));
+}
+
+/* ============ KIOSK LIST ============ */
+function buildKioskList(){
+  const list = document.getElementById('kioskList');
+  const layer = LAYERS.find(l=>l.id===activeLayerId);
+  const regionSel = document.getElementById('filterRegion').value;
+  const enseigneSel = document.getElementById('filterEnseigne').value;
+  const drSel = document.getElementById('filterDr').value;
+  const searchTerm = document.getElementById('searchInput').value.trim().toLowerCase();
+
+  const rows = markers.map(({kiosk, marker})=>{
+    let extraMatch = true;
+    if(regionSel && kiosk.region !== regionSel) extraMatch = false;
+    if(enseigneSel && kiosk.enseigne !== enseigneSel) extraMatch = false;
+    if(drSel && kiosk.dr !== drSel) extraMatch = false;
+    if(searchTerm){
+      const hay = (kiosk.kiosque+' '+kiosk.enseigne+' '+kiosk.dr+' '+kiosk.region+' '+kiosk.cp+' '+(kiosk.adresse||'')).toLowerCase();
+      if(!hay.includes(searchTerm)) extraMatch = false;
+    }
+    let match = extraMatch;
+    let color = '#2E7D5B';
+    if(layer.mode==='filter'){ match = layer.test(kiosk) && extraMatch; color = layer.color; }
+    else { color = colorFor(kiosk[layer.colorKey]||'Non renseigné', colorMaps[layer.colorKey]); }
+    return { kiosk, marker, match, color };
+  }).filter(r => r.match)
+    .sort((a,b)=> a.kiosk.kiosque.localeCompare(b.kiosk.kiosque));
+
+  document.getElementById('kioskListCount').textContent = rows.length;
+
+  if(!rows.length){
+    list.innerHTML = '<div class="empty-note">Aucun kiosque trouvé.</div>';
+    return;
+  }
+  list.innerHTML = rows.map((r,i)=>
+    '<div class="kiosk-row" data-idx="'+i+'"><span class="dot" style="background:'+r.color+';"></span><span class="name">'+r.kiosk.kiosque+'</span><span class="sub">'+r.kiosk.enseigne+'</span></div>'
+  ).join('');
+
+  list.querySelectorAll('.kiosk-row').forEach((el,i)=>{
+    el.addEventListener('click', ()=>{
+      const r = rows[i];
+      map.setView(r.marker.getLatLng(), 13, { animate:true });
+      clusterGroup.zoomToShowLayer(r.marker, ()=> r.marker.openPopup());
+      if(window.innerWidth <= 860){ document.getElementById('sidebar').classList.remove('open'); }
+    });
+  });
+}
+
+/* ============ MOBILE TOGGLE ============ */
+if(window.innerWidth <= 860){
+  document.getElementById('mapToggle').style.display = 'flex';
+}
+document.getElementById('mapToggle').addEventListener('click', ()=>{
+  document.getElementById('sidebar').classList.toggle('open');
+});
+
+/* ============ BOOT ============ */
+buildMarkers();
+</script>
+</body>
+</html>
